@@ -1,6 +1,6 @@
 # Proyecto — Landing Mundial 2026
 
-Pequeña landing informativa sobre la Copa Mundial 2026. HTML + SCSS modular con Parcel y Dart Sass.
+Pequeña landing informativa sobre la Copa Mundial 2026. HTML + SCSS modular con Parcel y Sass.
 
 ## Estado
 - Trabajo en progreso: layout principal, componentes y sistema de estilos modular.
