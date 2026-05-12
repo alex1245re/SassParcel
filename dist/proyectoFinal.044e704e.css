@@ -95,7 +95,7 @@ body {
   background: #ffffff0a;
 }
 
-@media screen and (width <= 768px) {
+@media screen and (width <= 576px) {
   .footer-inner {
     text-align: center;
     flex-direction: column;
@@ -173,6 +173,10 @@ body {
 }
 
 @media screen and (width <= 768px) {
+  .logo {
+    height: 70px;
+  }
+
   .nav-toggle {
     display: block;
   }
@@ -206,6 +210,13 @@ body {
     color: #e63946;
     background: #00000008;
     outline: none;
+  }
+}
+
+@media screen and (width <= 576px) {
+  .logo {
+    width: 100px;
+    height: 65px;
   }
 }
 
