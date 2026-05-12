@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel",
     "build": "parcel build --public-url ./",
-    "docs": "sassdoc src/scss -d src/sassdoc"
+    "docs": "sassdoc src/scss -d ./sassdoc"
   },
   "keywords": [],
   "author": "",
