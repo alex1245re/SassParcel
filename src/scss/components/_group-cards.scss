@@ -1,0 +1,51 @@
+@use '../abstracts/mixins' as mixins;
+@use '../abstracts/functions' as fn;
+
+.clasificacion{
+    .grid{
+        @include mixins.grid-flexible(220px, 1.25rem);
+        gap: 1rem;
+    }
+
+    .group-card{
+        @include mixins.card-style();
+        display: flex;
+        flex-direction: column;
+        min-height: 120px;
+    }
+
+    .group-card h3{ 
+        font-size: fn.size('md'); 
+        margin: 0 0 0.5rem 0; 
+    }
+    .group-card ol{ 
+        margin: 0; 
+        padding-left: 1.1rem; 
+        color: fn.color('text-primary'); 
+    }
+    .group-card li{ 
+        margin-bottom: 0.35rem; 
+    }
+
+    .flag{
+        display: inline-block;
+        width: 28px;
+        height: 20px;
+        margin-right: 0.5rem;
+        vertical-align: middle;
+        object-fit: cover;
+        border-radius: 3px;
+        background-color: #fff;
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.04) inset;
+    }
+
+    @include mixins.media(small, 'max'){
+        .grid{ 
+            grid-template-columns: 1fr; 
+        }
+    }
+    
+        @include mixins.media(xxlarge, 'min'){
+            .grid{ grid-template-columns: repeat(4, minmax(270px, 1fr)); }
+        }
+}

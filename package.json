@@ -1,0 +1,18 @@
+{
+  "name": "proyectofinal",
+  "version": "1.0.0",
+  "description": "",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build --public-url ./",
+    "docs": "sassdoc src/scss -d src/sassdoc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.16.4",
+    "parcel": "^2.16.4"
+  }
+}

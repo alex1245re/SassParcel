@@ -1,0 +1,160 @@
+//// Proyecto Sass y Parcel
+/// @author alejandro felipe
+/// @group Mixins
+/// Mixins reutilizables para estilos comunes, como flexbox, rejillas y otros patrones de diseño que se utilizan en todo el proyecto.
+@use "variables" as vars;
+@use "functions" as fn;
+@use "sass:map" as map;
+
+/// Aplica un borde sólido y un radio de esquina estándar
+/// @group Estilos Base
+/// @example scss - uso del mixin border_radius
+/// .box { 
+///  @include mixins.border_radius;
+/// }
+@mixin border_radius {
+    border: fn.get-border(1) solid fn.color('bg-page');
+    border-radius: 0.5rem;
+}
+
+/// Mixin para media queries basado en los tamaños definidos en $sizes-media
+/// @group Layout
+/// 
+/// @param {String} $clave - Clave del tamaño (small, medium, large, xlarge, xxlarge) definida en $sizes-media
+/// @param {String} $type - Tipo de media query ('min' o 'max'), por defecto 'min'
+/// @example scss - uso del mixin media
+/// .container {
+///   // Para min-width (mobile-first)
+///   @include mixins.media(medium, 'min') {
+///    max-width: 800px;
+///   }
+///   // Para max-width (aplicar estilos en pantallas pequeñas)
+///   @include mixins.media(medium, 'max') {
+///    padding: 1rem;
+///   }
+/// }
+@mixin media ($clave, $type: 'min'){
+    $size: map.get(vars.$sizes-media, $clave);
+    @if $type == 'min' {
+        @media screen and (min-width: $size) {
+            @content;
+        }
+    } @else {
+        @media screen and (max-width: $size) {
+            @content;
+        }
+    }
+}
+
+/// Configuración rápida de Flexbox 
+/// @group Layout 
+/// @param {String} $direction [row] - Dirección del flex 
+/// @param {String} $justifycontent [center] - Alineación horizontal 
+/// @param {String} $alignitem [center] - Alineación vertical 
+/// @example scss - uso del mixin flexposition
+/// .footer {
+///     @include mixins.flexposition(column, center, center);
+/// }
+@mixin flexposition($direction: row, $justifycontent: center, $alignitem: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justifycontent;
+    align-items: $alignitem;
+}
+
+/// Crea una rejilla básica con columnas fijas y espacios definidos
+/// @group Layout
+/// @example scss - uso del mixin layout_basico
+/// .main-layout {
+///    @include mixins.layout_basico();
+/// }
+@mixin layout_basico(){
+    display: grid;
+    grid-template-columns: minmax(10rem, 1fr) repeat(7, minmax(min-content, 16rem)) minmax(10rem, 1fr);
+    grid-template-rows: repeat(3, min-content);
+    grid-gap: 2rem;
+    z-index: 100;
+}
+
+/// Crea una rejilla flexible con columnas auto-ajustables
+/// @group Layout 
+/// @param {Number} $min-size [18rem] - Tamaño mínimo de cada columna 
+/// @param {Number} $gap [1.5rem] - Espaciado entre celdas 
+/// @example 
+///     .products-list{
+///         @include mixins.grid-flexible(18rem, 1.5rem);
+/// }
+@mixin grid-flexible($min-size: 18rem, $gap: 1.5rem) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($min-size, 1fr));
+    gap: $gap;
+}
+
+/// Genera los estilos estructurales y visuales para un componente de navegación.
+/// Utiliza funciones para obtener colores y tamaños definidos en el módulo de variables global.
+/// Incluye estilos para la lista de navegación, los elementos y los enlaces, con transiciones para interactividad.
+/// @group Componentes
+/// @require {mixin} flexposition - Mixin de configuración de Flexbox.
+/// @require {function} vars.color - Función que devuelve los colores del tema (primary, quaternary).
+/// @require {function} vars.size - Función que calcula los tamaños de fuente (xs).
+/// @example scss - Uso esperado del mixin
+/// .navbar {
+///     @include navigation();
+/// }
+@mixin navigation() {
+    &-list {
+        @include flexposition(row, space-around);
+        height: 100%;
+    }
+    &-item {
+        list-style-type: none;
+    }
+    &-link {
+        color: fn.color('text-primary');
+        font-size: fn.size('md');
+        text-decoration: none;
+        transition: all .5s;
+        &:hover {
+            color: fn.color('accent-color');
+
+        }
+    }
+}
+
+/// Genera los estilos tipográficos base para los encabezados del nivel 1 al 3 (h1, h2, h3).
+/// Extrae los valores de fuentes, tamaños y pesos del módulo de variables global.
+/// @group Tipografía
+/// @require {variable} vars.$font-heading - Familia tipográfica para encabezados
+/// @require {function} vars.size - Función que calcula el tamaño base (sm)
+/// @require {function} vars.weight - Mapa o función que devuelve el peso de la fuente (bold)
+/// @example scss - Uso del mixin cabeceras
+///   @include mixins.cabeceras;
+@mixin cabeceras {
+    @for $i from 1 through 3 {
+        h#{$i} {
+            font-family: vars.$font-heading;
+            font-size: fn.size('sm') * 2;
+            font-weight: fn.weight('bold');
+        }
+    }
+}
+
+/// Estilo de tarjeta básico con fondo, borde y sombra
+/// @group Componentes
+/// @example scss - uso del mixin card-style
+/// .card {
+///   @include mixins.card-style();
+/// }   
+@mixin card-style {
+    background-color: fn.color('bg-header');
+    border: fn.get-border(1) solid fn.color('bg-page');
+    @include border_radius;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+}

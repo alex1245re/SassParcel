@@ -1,0 +1,18 @@
+@use '../abstracts/functions' as fn;
+@use '../abstracts/mixins' as mixins;
+.contact-form{
+    @include mixins.flexposition(row, flex-start, center);
+    gap: .5rem;
+}
+.contact-form input[type="email"]{
+    padding:.6rem .8rem;
+    border:1px solid #e6e9ef;
+    border-radius:6px;
+    flex:1;
+}
+
+@include mixins.media(medium, 'max'){
+    .contact-form{
+        @include mixins.flexposition(column, center, stretch); 
+    }
+}
