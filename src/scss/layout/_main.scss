@@ -1,0 +1,28 @@
+@use '../abstracts/mixins' as mixins;
+
+@include mixins.media(xlarge, 'min'){
+    .site-main{
+        max-width: 1200px;
+        margin: 5rem auto 0;
+        display: block;
+        padding: 0 1rem;
+    }
+
+    .site-main .container{
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+@include mixins.media(xxlarge, 'min'){
+    .page-grid{
+        @include mixins.layout_basico();
+        margin-top: 3rem;
+        grid-auto-flow: column;
+        grid-template-columns: 0;
+    }
+
+    .page-grid.container{
+        grid-column: 2 / -2;
+    }
+}

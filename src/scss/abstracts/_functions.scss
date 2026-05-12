@@ -1,0 +1,54 @@
+//// Proyecto Sass y Parcel
+//// @author alejandro felipe
+/// @group Funciones
+/// Funciones personalizadas para el proyecto, como manejo de colores, tamaños y otros valores reutilizables.
+@use "sass:map";
+@use "sass:list";
+@use 'variables' as vars;
+
+
+$borders: (
+    1px, 
+    2px, 
+    5px, 
+    10px
+);
+
+@function get-border($index) {
+  // Verificamos si el índice existe en la lista para evitar errores
+    @if $index > list.length($borders) or $index <= 0 {
+        @error "Índice no existe. La lista solo tiene #{list.length($borders)} elementos.";
+    }
+
+  // Usamos list.nth para extraer el valor
+    @return list.nth($borders, $index);
+}
+
+
+/// Obtiene un color del mapa colors
+/// @group Colores 
+/// @param {String} $name - Nombre del color definido en el mapa $colors
+/// @return {Color} Valor hexadecimal del color
+@function color($name) {
+    @if map.has-key(vars.$colors, $name) {
+        @return map.get(vars.$colors, $name);
+
+    } @else {
+        @error "El color '#{$name}' no existe en el mapa";
+    }
+}
+/// Obtiene un tamaño de fuente específico 
+/// @group tipografía 
+/// @param {String} $size - Clave del tamaño (xs, sm, md, lg, xl, xxl) 
+/// @return {Number} Valor en rem
+@function size($size) {
+    @return map.get(vars.$sizes, $size);
+}
+
+/// Obtiene el peso de fuente numérico 
+/// @group Tipografía 
+/// @param {String} $weight - Nombre del peso (light, regular, bold) 
+/// @return {Number} Valor numérico del peso 
+@function weight($weight) {
+    @return map.get(vars.$font-weights, $weight);
+}

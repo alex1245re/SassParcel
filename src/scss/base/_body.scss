@@ -1,0 +1,8 @@
+@use '../abstracts/variables' as core;
+@use '../abstracts/functions' as fn;
+
+body{
+    font-family: core.$font-body;
+    color: fn.color('text-primary');
+    background-color: fn.color('bg-page');
+}

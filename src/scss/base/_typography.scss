@@ -1,0 +1,10 @@
+@use '../abstracts/variables' as core;
+@use '../abstracts/functions' as fn;
+@use '../abstracts/mixins' as mixins;
+
+@include mixins.cabeceras;
+
+body{
+    font-family: core.$font-body;
+    line-height: 1.6;
+}

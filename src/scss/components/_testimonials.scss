@@ -1,0 +1,67 @@
+@use '../abstracts/functions' as fn;
+@use '../abstracts/mixins' as mixins;
+.testimonials .testimonial{
+    background-color:#ffffffbc;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,0.08);
+    margin-bottom:20px;
+    display:flex;
+    gap:1rem;
+    align-items:center;
+}
+
+.testimonial .testimonial-content{
+    flex:1 1 auto;
+}
+.testimonial .testimonial-content p{ 
+    margin:0 0 .4rem 
+}
+.testimonial .testimonial-content cite{ 
+    display:block; 
+    margin-top:.5rem; 
+    color:#6b7280;
+}
+
+.testimonial .testimonial-media{
+    margin-left:auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.testimonial .testimonial-media img{
+    width:90px;
+    height:90px;
+    object-fit:cover;
+    border-radius:50%;
+    display:block;
+}
+.testimonial .stars{
+    margin-top:.5rem;
+    color: fn.color('accent-color');
+    font-size:1.1rem;
+}
+
+@include mixins.media(medium, 'max') {
+    .testimonials .testimonial{
+        flex-direction:column;
+        align-items:stretch;
+    }
+    .testimonial .testimonial-media{ 
+        margin-left:0; 
+        align-self:center;
+    }
+}
+
+@include mixins.media(small, 'max'){
+    .testimonial .testimonial-media img{ 
+        width:70px; 
+        height:70px; 
+    }
+    .testimonial{ 
+        padding:16px; 
+    }
+    .testimonial .stars{ 
+        font-size:1rem; 
+    }
+}

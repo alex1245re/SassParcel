@@ -1,0 +1,54 @@
+//// @author alejandro felipe
+/// @group Variables
+/// Variables globales para el proyecto
+
+/// Familias de fuentes principales del sitio 
+/// @group Tipografía 
+/// @type String
+$font-heading: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial ;
+$font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial ;
+
+/// Tamaños de fuente disponibles 
+/// @group tipografía
+/// @type Map
+$sizes: (
+    xs: 0.75rem,
+    sm: 0.875rem,
+    md: 1rem,
+    lg: 1.25rem,
+    xl: 1.5rem
+);
+
+/// Tamaños de media query para diseño responsivo
+/// @group Layout
+/// @type Map
+$sizes-media:(
+    small:576px,
+    medium:768px,
+    large:992px,
+    xlarge:1200px,
+    xxlarge:1400px
+);
+
+/// Paleta de colores del proyecto 
+/// @group Colores 
+/// @type Map
+$colors:(
+    bg-page: #F7F9FC,
+    bg-header: #FFFFFF,
+    text-primary: #1A2B4C,
+    text-secondary: #4A5568,
+    accent-color: #E63946,
+    accent-hover: #C1121F,
+    hero-bg: #1D3557,
+    footer-bg: #0F172A
+);
+
+/// Pesos de fuente disponibles 
+/// @group Tipografía 
+/// @type Map
+$font-weights: (
+    "light": 300, 
+    "regular": 400, 
+    "bold": 700
+);
